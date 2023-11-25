@@ -1,5 +1,6 @@
 import pygame
-#from pygame.locals import *
+
+# from pygame.locals import *
 
 pygame.init()
 
@@ -17,6 +18,28 @@ def draw_line():
     for line in range(0, 20):
         pygame.draw.line(screen, (255, 255, 255), (0, line * block_size), (screen_wth, line * block_size))
         pygame.draw.line(screen, (255, 255, 255), (line * block_size, 0), (line * block_size, screen_ht))
+
+class Player():
+    def __init__(self, x, y):
+        girl_im = pygame.image.load("need/girl1.png")
+        self.girl_im = pygame.transform.scale(girl_im, (block_size, block_size*2))
+        self.rect = self.girl_im.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+    def update(self):
+        count_x = 0
+        count_y = 0
+        key = pygame.key.get_pressed()
+        if key[pygame.K_LEFT]:
+            count_x -= 10
+        if key[pygame.K_RIGHT]:
+            count_x += 10
+        self.rect.x += count_x
+        self.rect.y += count_y
+
+
+        screen.blit(self.girl_im, self.rect)
+
 class World_lvl1:
     def __init__(self, my_list):
         self.block_list = []
@@ -62,19 +85,23 @@ world_map_lvl_one = [
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1]
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
-
+player = Player(70, screen_ht - 105)
 world = World_lvl1(world_map_lvl_one)
 while pygame.event.wait().type != pygame.QUIT:
     screen.blit(fon, (0, 0))
+
     world.draw()
+
+    player.update()
+
     draw_line()
     pygame.display.update()
 
