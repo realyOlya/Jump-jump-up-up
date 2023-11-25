@@ -1,2 +1,81 @@
-print(1234)
-print(123456)
+import pygame
+#from pygame.locals import *
+
+pygame.init()
+
+screen_wth = 700
+screen_ht = 700
+screen = pygame.display.set_mode((screen_wth, screen_ht))
+pygame.display.set_caption("Jump-jump-up-up")
+
+fon = pygame.image.load("need/fon.png")
+
+block_size = 35
+
+
+def draw_line():
+    for line in range(0, 20):
+        pygame.draw.line(screen, (255, 255, 255), (0, line * block_size), (screen_wth, line * block_size))
+        pygame.draw.line(screen, (255, 255, 255), (line * block_size, 0), (line * block_size, screen_ht))
+class World_lvl1:
+    def __init__(self, list):
+        self.block_list = []
+        dirt_im = pygame.image.load("need/dirty.png")
+        green_im = pygame.image.load("need/green.png")
+        row_count = 0
+        for row in world_map_lvl_one:
+            count_col = 0
+            for block in row:
+                if block == 1:
+                    img = pygame.transform.scale(dirt_im, (block_size, block_size))
+                    img_rect = img.get_rect()
+                    img_rect.x = count_col * block_size
+                    img_rect.y = row_count * block_size
+                    get_block = (img, img_rect)
+                    self.block_list.append(get_block)
+                if block == 2:
+                    img = pygame.transform.scale(green_im, (block_size, block_size))
+                    img_rect = img.get_rect()
+                    img_rect.x = count_col * block_size
+                    img_rect.y = row_count * block_size
+                    get_block = (img, img_rect)
+                    self.block_list.append(get_block)
+                count_col += 1
+            row_count += 1
+
+    def draw(self):
+        for block in self.block_list:
+            screen.blit(block[0], block[1])
+
+
+world_map_lvl_one = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1]
+]
+
+world = World_lvl1(world_map_lvl_one)
+while pygame.event.wait().type != pygame.QUIT:
+    screen.blit(fon, (0, 0))
+    world.draw()
+    draw_line()
+    pygame.display.update()
+
+pygame.quit()
