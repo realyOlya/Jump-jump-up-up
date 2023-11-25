@@ -18,7 +18,7 @@ def draw_line():
         pygame.draw.line(screen, (255, 255, 255), (0, line * block_size), (screen_wth, line * block_size))
         pygame.draw.line(screen, (255, 255, 255), (line * block_size, 0), (line * block_size, screen_ht))
 class World_lvl1:
-    def __init__(self, list):
+    def __init__(self, my_list):
         self.block_list = []
         dirt_im = pygame.image.load("need/dirty.png")
         green_im = pygame.image.load("need/green.png")
