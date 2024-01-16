@@ -1,9 +1,12 @@
 import sys
 
 from PyQt5.QtGui import QPixmap, QFont
-from PyQt5.QtWidgets import QLabel, QMainWindow, QApplication
-from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit
-from PyQt5.QtWidgets import QScrollArea, QVBoxLayout, QMessageBox
+from PyQt5.QtWidgets import QLabel, QMainWindow
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QWidget, QPushButton
+from PyQt5.QtWidgets import QLineEdit
+from PyQt5.QtWidgets import QScrollArea, QVBoxLayout
+from PyQt5.QtWidgets import QMessageBox
 
 import sqlite3
 from world_lvl_one import run
@@ -296,7 +299,13 @@ class Main(QWidget):
         pass
 
     def rules_game(self):
-        pass
+        with open('rules_game.txt', 'r', encoding='utf-8') as file:
+            text = str(file.read())
+
+        label = ScrollLabel(self)
+        label.setText(text)
+        label.setFont(QFont('Times', 14))
+        label.setGeometry(380, 50, 500, 540)
 
     def shopping(self):
         pass
