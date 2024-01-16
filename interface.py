@@ -1,11 +1,12 @@
 import sys
 
-from PyQt5.QtGui import QPixmap, QFont
+from PyQt5.QtGui import QPixmap, QFont, QImage, QPainter
 from PyQt5.QtWidgets import QLabel, QMainWindow, QApplication
 from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit
 from PyQt5.QtWidgets import QScrollArea, QVBoxLayout, QMessageBox
 
 import sqlite3
+from world_lvl_one import run
 
 
 class LoginDatabase():
@@ -301,7 +302,10 @@ class Main(QWidget):
         pass
 
     def playing(self):
-        pass
+        self.close()
+        run()
+
+
 
 
 if __name__ == '__main__':
