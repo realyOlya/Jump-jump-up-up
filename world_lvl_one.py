@@ -13,6 +13,7 @@ def run():
 
     block_size = 35
 
+    # фунуция для разделения экрана игры на полосы
     # def draw_line():
     #     for line in range(0, 20):
     #         pygame.draw.line(screen, (255, 255, 255), (0, line * block_size), (screen_wth, line * block_size))

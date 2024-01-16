@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtGui import QPixmap, QFont, QImage, QPainter
+from PyQt5.QtGui import QPixmap, QFont
 from PyQt5.QtWidgets import QLabel, QMainWindow, QApplication
 from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit
 from PyQt5.QtWidgets import QScrollArea, QVBoxLayout, QMessageBox
@@ -310,6 +310,6 @@ class Main(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    st = Main()
+    st = Start()
     st.show()
     sys.exit(app.exec())
