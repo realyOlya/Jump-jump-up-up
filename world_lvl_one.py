@@ -4,6 +4,9 @@ import pygame
 def run():
     pygame.init()
 
+    pygame.mixer.music.load("need/music.mp3")
+    pygame.mixer.music.play(-1)
+
     screen_wth = 700
     screen_ht = 700
     screen = pygame.display.set_mode((screen_wth, screen_ht))
@@ -38,6 +41,39 @@ def run():
                 count_x += 10
             self.rect.x += count_x
             self.rect.y += count_y
+
+
+            if key[pygame.K_SPACE]:
+                pygame.mixer.music.stop()
+
+            if key[pygame.K_0]:
+                pygame.mixer.music.rewind()
+
+            if key[pygame.K_1]:
+                pygame.mixer.music.stop()
+                pygame.mixer.music.load("need/music2.mp3")
+                pygame.mixer.music.play(-1)
+
+            if key[pygame.K_2]:
+                pygame.mixer.music.stop()
+                pygame.mixer.music.load("need/music3.mp3")
+                pygame.mixer.music.play(-1)
+
+            if key[pygame.K_3]:
+                pygame.mixer.music.stop()
+                pygame.mixer.music.load("need/music4.mp3")
+                pygame.mixer.music.play(-1)
+
+            if key[pygame.K_4]:
+                pygame.mixer.music.stop()
+                pygame.mixer.music.load("need/music5.mp3")
+                pygame.mixer.music.play(-1)
+
+            if key[pygame.K_5]:
+                pygame.mixer.music.stop()
+                pygame.mixer.music.load("need/music6.mp3")
+                pygame.mixer.music.play(-1)
+
 
             screen.blit(self.girl_im, self.rect)
 
@@ -96,6 +132,7 @@ def run():
     player = Player(70, screen_ht - 105)
     world = World_lvl1(world_map_lvl_one)
     while pygame.event.wait().type != pygame.QUIT:
+
         screen.blit(fon, (0, 0))
 
         world.draw()
@@ -105,3 +142,6 @@ def run():
         pygame.display.update()
 
     pygame.quit()
+
+# if __name__ == '__main__':
+#     run()

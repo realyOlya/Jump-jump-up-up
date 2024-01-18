@@ -296,7 +296,9 @@ class Main(QWidget):
         self.play.clicked.connect(self.playing)
 
     def reiting(self):
-        pass
+        self.reiting = Reiting()
+        self.reiting.show()
+        self.close()
 
     def rules_game(self):
         with open('rules_game.txt', 'r', encoding='utf-8') as file:
@@ -308,17 +310,48 @@ class Main(QWidget):
         label.setGeometry(380, 50, 500, 540)
 
     def shopping(self):
-        pass
+        self.close()
+        self.shoping = Shop()
+        self.shoping.show()
 
     def playing(self):
         self.close()
         run()
 
 
+class Reiting(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("Меню настроек")
+        self.setGeometry(650, 300, 600, 600)
+
+        with open('seiting.txt', 'r', encoding='utf-8') as file:
+            text = str(file.read())
+
+        label = ScrollLabel(self)
+        label.setText(text)
+        label.setFont(QFont('Times', 14))
+        label.setGeometry(100, 0, 600, 600)
+
+
+class Shop(QWidget):
+
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("МАГАЗИН")
+        self.setGeometry(650, 300, 600, 600)
+
+        self.start = QPixmap("need/shop.png")
+        self.image = QLabel(self)
+        self.image.move(0, -300)
+        self.image.resize(1200, 1200)
+        self.image.setPixmap(self.start)
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    st = Start()
+    st = Shop()
     st.show()
     sys.exit(app.exec())
