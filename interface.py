@@ -352,6 +352,6 @@ class Shop(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    st = Shop()
+    st = Start()
     st.show()
     sys.exit(app.exec())
