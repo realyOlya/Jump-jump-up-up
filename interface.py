@@ -11,7 +11,8 @@ from PyQt5.QtWidgets import QMessageBox
 import sqlite3
 from world_lvl_one import run
 
-
+#Создание БД
+#Бд для хранения паролей и логинов
 class LoginDatabase():
     def __init__(self, dbname):
         self.dbname = dbname
@@ -298,7 +299,6 @@ class Main(QWidget):
     def reiting(self):
         self.reiting = Reiting()
         self.reiting.show()
-        self.close()
 
     def rules_game(self):
         with open('rules_game.txt', 'r', encoding='utf-8') as file:
@@ -310,7 +310,6 @@ class Main(QWidget):
         label.setGeometry(380, 50, 500, 540)
 
     def shopping(self):
-        self.close()
         self.shoping = Shop()
         self.shoping.show()
 
